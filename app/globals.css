@@ -1,7 +1,107 @@
+/* ============================================
+   📁 app/globals.css - Luxury Magazine Theme
+   ✨ Sophisticated | 📖 Editorial | 🏆 Luxury
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================
+   🎨 CSS Variables - Gold & Black Theme
+   ============================================ */
+:root {
+  /* Primary Colors */
+  --color-luxury-gold: #D4AF37;
+  --color-luxury-gold-light: #F4E4BA;
+  --color-luxury-gold-dark: #8B7125;
+
+  /* Base Colors */
+  --color-luxury-black: #0A0A0A;
+  --color-luxury-dark: #1A1A1A;
+  --color-luxury-cream: #F8F6F0;
+  --color-luxury-gray: #6B6B6B;
+
+  /* Theme Colors */
+  --background: #0A0A0A;
+  --foreground: #F8F6F0;
+  --gold: #D4AF37;
+  --gold-light: #F4E4BA;
+
+  /* Typography */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Cormorant Garamond', serif;
+
+  /* Prevent iOS zoom on input focus */
+  --font-size-base: 16px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+}
+
+/* ============================================
+   📖 Base Styles - Editorial Layout
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: contain;
+}
+
+/* ✍️ Serif Typography for Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Accent text with Cormorant */
+.font-accent {
+  font-family: var(--font-accent);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   🎭 Animations
+   ============================================ */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
 
   to {
@@ -10,59 +110,204 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-gold {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
 .animate-fadeIn {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
-@import "tailwindcss";
-
-:root {
-  --background: #050505;
-  --foreground: #ededed;
-  --gold: #D4AF37;
-  --gold-light: #F4E4BA;
-  /* Prevent iOS zoom on input focus */
-  --font-size-base: 16px;
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+.animate-pulse-gold {
+  animation: pulse-gold 3s ease-in-out infinite;
 }
 
-html {
-  scroll-behavior: smooth;
-  /* Prevent text size adjustment on orientation change */
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+/* ============================================
+   🏆 Luxury Components
+   ============================================ */
+
+/* Gold Gradient Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-body {
+/* Luxury Divider */
+.luxury-divider {
+  position: relative;
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.luxury-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.luxury-divider span {
+  position: relative;
   background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  overflow-x: hidden;
-  /* Improve font rendering on mobile */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Prevent pull-to-refresh on mobile */
-  overscroll-behavior-y: contain;
+  padding: 0 2rem;
+  font-family: var(--font-display);
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
 }
 
-/* Mobile touch optimization */
+/* Hover Shine Effect */
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.hover-shine:hover::after {
+  left: 100%;
+}
+
+/* Editorial Card */
+.editorial-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-luxury-dark);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.editorial-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Luxury Button */
+.btn-luxury {
+  position: relative;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--gold);
+  transition: width 0.4s ease;
+  z-index: -1;
+}
+
+.btn-luxury:hover {
+  color: var(--background);
+}
+
+.btn-luxury:hover::before {
+  width: 100%;
+}
+
+/* ============================================
+   🖼️ Image Styles
+   ============================================ */
+img {
+  transition: all 0.5s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.img-zoom {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   📱 Mobile Optimizations
+   ============================================ */
 * {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Ensure minimum touch target sizes (44x44px) */
 button,
 a {
   min-height: 44px;
   touch-action: manipulation;
 }
 
-/* Custom scrollbar - hide on mobile for cleaner look */
+/* Scrollbar Styles */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 768px) {
   ::-webkit-scrollbar {
     display: none;
@@ -84,7 +329,7 @@ a {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--gold), #8B7125);
+    background: linear-gradient(180deg, var(--gold), var(--color-luxury-gold-dark));
     border-radius: 4px;
   }
 
@@ -93,28 +338,20 @@ a {
   }
 }
 
-/* Selection styling */
+/* ============================================
+   ✨ Selection & Focus
+   ============================================ */
 ::selection {
   background: rgba(212, 175, 55, 0.3);
   color: #fff;
 }
 
-/* Smooth image loading */
-img {
-  transition: opacity 0.3s ease;
-  /* Prevent image dragging on mobile */
-  -webkit-user-drag: none;
-  user-select: none;
-}
-
-/* Focus styles for accessibility */
 button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
 
-/* Active states for mobile touch feedback */
 @media (hover: none) {
 
   button:active,
@@ -124,24 +361,9 @@ a:focus-visible {
   }
 }
 
-/* Pulse animation for decorative elements */
-@keyframes pulse-gold {
-
-  0%,
-  100% {
-    opacity: 0.3;
-  }
-
-  50% {
-    opacity: 0.6;
-  }
-}
-
-.animate-pulse-gold {
-  animation: pulse-gold 3s ease-in-out infinite;
-}
-
-/* Safe area insets for notched phones */
+/* ============================================
+   📐 Safe Area Insets
+   ============================================ */
 @supports (padding: max(0px)) {
   .safe-area-inset-bottom {
     padding-bottom: max(16px, env(safe-area-inset-bottom));
@@ -152,13 +374,11 @@ a:focus-visible {
   }
 }
 
-/* Prevent horizontal overflow on mobile */
 .overflow-x-hidden {
   overflow-x: hidden;
   max-width: 100vw;
 }
 
-/* Smooth momentum scrolling on iOS */
 .scroll-smooth {
   -webkit-overflow-scrolling: touch;
 }
