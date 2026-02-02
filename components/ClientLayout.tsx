@@ -118,7 +118,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                 <main className="min-h-screen pt-32">
                     {children}
                 </main>
-                <Footer lang={lang} t={t} />
+                <Footer />
             </CartProvider>
         </>
     );
